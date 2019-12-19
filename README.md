@@ -6,12 +6,12 @@ We used a DenseNetFCN-3D with 4 dense blocks of 3 layers per block (mostly becau
 
 
 ### Deliverables:
-- `DataGenerator.py` python file
-- `DenseNet3D.py` python file 
+- `DataGenerator.py` python file: Create generator for training and validation, user may apply image augmentation on the fly.  
+- `DenseNet3D.py` python file: Implementation of the [DenseNetFCN-3D from GalDude33](https://github.com/GalDude33/DenseNetFCN-3D).   
 - `generateFramesMasksFromVideo.ipynb` notebook: Generate frames/masks with desired shape from the video/ground_truth files  
 - `Training.ipynb` notebook: Feed the DenseNetFCN-3D with frames/masks pairs.   
 - `VisualizationPrediction.ipynb` notebook: Predict an example mask with the DenseNetFCN-3D model.  
-- `ConfusionMatrix.ipynb` notebook:   
+- `ConfusionMatrix.ipynb` notebook: Compute the accuracy and the F1 score for the 'AIA terminal nodule' (class 1) , the 'AIA central nodule'(class 2) and the other cells (class 0)   
 
 (keep all the files in the same directory)
 
@@ -19,9 +19,8 @@ We used a DenseNetFCN-3D with 4 dense blocks of 3 layers per block (mostly becau
 We executed the code on Google Colab by following these steps:
 1. The training samples and their corresponding masks need to be stored as `.npy` files. Their names should be `frame_i.npy`and `mask_i.npy` respectively (for i going from 0 → maxTime) and frames/masks need to be stored in two different folders. If you gives the good PATHs in the second cell of `generateFramesMasksFromVideo.ipynb`, this notebook does this steps for you.  
 P.S: To help our model, we labeled **ALL** cell parts that were not AIA central/terminal noduls with the same value. Thus, the model only has to distinguish 3 types of cells.
-2. In `datagenerator.py`, change the 4 paths to the directories where the frames and the masks are stored.
-3. Give the wanted paths and variables values to all the second cell's variables of `Training.ipynb` notebook. Then execute all cells. It will train a DenseNetFCN-3D and save the model.
-4. Once the model has been trained, it is possible to have a visual idea of the prediction with the `VisualizationPrediction.ipynb` notebook. First, change the variables/paths of the second cell and then run all the cells. The last cell shows the image, the mask and finally the predicted mask.
+2. Give the wanted paths and variables values to all the second cell's variables of `Training.ipynb` notebook. Then execute all cells. It will train a DenseNetFCN-3D and save the model.
+3. Once the model has been trained, it is possible to have a visual idea of the prediction with the `VisualizationPrediction.ipynb` notebook. First, change the variables/paths of the second cell and then run all the cells. The last cell shows the image, the mask and finally the predicted mask.
 
 ### REFERENCES: [DenseNet3D from GalDude33](https://github.com/GalDude33/DenseNetFCN-3D)
 #### Deadline: December 19th 2019, 23:59
